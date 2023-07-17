@@ -9,12 +9,15 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
 use App\Http\Requests\ArticaleRequest;
+use App\Models\ArticaleImage;
+use Illuminate\Support\Facades\Storage;
 
 class ArticaleController extends Controller
 {
 
     public function __construct(Request $request)
     {
+        $this->middleware(['auth.type:admin,author']);
         if ($request->method() == "GET") {
 
             $departments = Department::all();
@@ -28,8 +31,12 @@ class ArticaleController extends Controller
      */
     public function index()
     {
-        $articales = Articale::paginate();
-        return view('admin.articales.index',["articales"=>$articales]);
+        $allArticales = Articale::latest('created_at')->paginate(); ///admin show all articales
+        $articales = Articale::where('user_id',Auth::id())->paginate();//The author sees only his articles
+        return view('admin.articales.index', [
+            "articales" => $articales ,
+            "allArticales"=>$allArticales
+        ]);
     }
 
     /**
@@ -38,7 +45,6 @@ class ArticaleController extends Controller
     public function create()
     {
         return view('admin.articales.create', ['articale' => new Articale()]);
-
     }
 
     /**
@@ -50,21 +56,27 @@ class ArticaleController extends Controller
 
         if ($request->hasFile('image')) {
             $file = $request->file('image');
-            $path = $file->store("uploads/articales", ['disk'=>'public']);
+            $path = $file->store("uploads/articales", ['disk' => 'public']);
             $data['image'] = $path;
         }
 
-        // $data['user_id'] = Auth::id();
-        $data['user_id'] = 1;
+        $data['user_id'] = Auth::id();
 
-
+        // dd($data);
         $articale = Articale::create($data);
-        dd($articale);
+
+        if ($request->hasFile('gallery')) {
+            //array of uploadfile
+            foreach ($request->file('gallery') as $file) {
+                ArticaleImage::create([
+                    'product_id' => $articale->id,
+                    'image' => $file->store("uploads/articales/$articale->id", ['disk' => 'public'])
+                ]);
+            }
+        }
 
         return redirect()->route('articales.index')
-            ->with('success', "Done..., created a New Department {$articale->name}");
-
-
+            ->with('success', "Done..., Created a Artical {$articale->title}");
     }
 
     /**
@@ -78,17 +90,46 @@ class ArticaleController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Articale $articale)
     {
-        //
+
+        return view('admin.articales.edit', ['articale' => $articale]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(ArticaleRequest $request, Articale $articale)
     {
-        //
+        $data = $request->validated();
+        $data['user_id'] = Auth::id();
+
+        if ($request->hasFile('image')) {
+            $file = $request->file('image'); //return uploadedfile object
+            $path = $file->store('uploads/articales', ['disk' => 'public']);
+            $data['image'] = $path;
+        }
+
+        $old_image = $articale->image;
+        $articale->update($data);
+
+        if ($old_image && $old_image != $articale->image) {
+            Storage::disk('public')->delete($old_image);
+        }
+
+        if ($request->hasFile('gallery')) {
+            //array of uploadfile
+            foreach ($request->file('gallery') as $file) {
+                ArticaleImage::create([
+                    'articale_id' => $articale->id,
+                    'image' => $file->store("uploads/articales/$articale->id", ['disk' => 'public'])
+                ]);
+            }
+        }
+
+
+        return redirect()->route('articales.index')
+            ->with('success', "Done... {{$articale->title}} updated");
     }
 
     /**
@@ -97,5 +138,12 @@ class ArticaleController extends Controller
     public function destroy(Articale $articale)
     {
         $articale->delete();
+
+        if ($articale->image) {
+            Storage::disk('public')->delete($articale->image);
+        }
+
+        return redirect()->route('articales.index')
+            ->with('success', "Done..., Deleted a Artical {$articale->title}");
     }
 }

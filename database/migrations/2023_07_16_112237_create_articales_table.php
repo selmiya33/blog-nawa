@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('articales', function (Blueprint $table) {
             $table->id();
             $table->foreignId('department_id')->nullable()->constrained()->nullOnDelete();
-            $table->foreignId('user_id')->nullable()->constrained()->nullOnDelete();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->string('image');
             $table->string('title');
             $table->longText('description');

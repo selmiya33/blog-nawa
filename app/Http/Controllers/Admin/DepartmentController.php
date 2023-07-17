@@ -10,6 +10,11 @@ use App\Http\Requests\DepartmentRequest;
 
 class DepartmentController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['auth.type:admin']);
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -37,7 +42,7 @@ class DepartmentController extends Controller
 
         if ($request->hasFile('image')) {
             $file = $request->file('image');
-            $path = $file->store("uploads/departments", ['disk'=>'public']);
+            $path = $file->store("uploads/departments", ['disk' => 'public']);
             $data['image'] = $path;
         }
 
@@ -61,26 +66,25 @@ class DepartmentController extends Controller
     public function edit(Department $department)
     {
         return view('Admin.departments.edit', ['department' => $department]);
-
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(DepartmentRequest $request,Department $department)
+    public function update(DepartmentRequest $request, Department $department)
     {
         $data = $request->validated();
 
         if ($request->hasFile('image')) {
-            $file = $request->file('image');
-            $path = $file->store("uploads/departments", ['disk'=>'public']);
+            $file = $request->file('image'); //return uploadedfile object
+            $path = $file->store('uploads/depaerments', ['disk' => 'public']);
             $data['image'] = $path;
         }
 
         $old_image = $department->image;
         $department->update($data);
 
-        if($old_image && $old_image != $department->image){
+        if ($old_image && $old_image != $department->image) {
             Storage::disk('public')->delete($old_image);
         }
 
@@ -94,8 +98,12 @@ class DepartmentController extends Controller
     public function destroy(Department $department)
     {
         $department->delete();
-        return redirect()->route('departments.index')
-        ->with('success', "Done... {{$department->name}} deleted");
 
+        if ($department->image) {
+            Storage::disk('public')->delete($department->image);
+        }
+
+        return redirect()->route('departments.index')
+            ->with('success', "Done... {{$department->name}} deleted");
     }
 }

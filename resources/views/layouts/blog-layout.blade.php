@@ -10,12 +10,12 @@
     <link href="{{ asset('css/responsive.css') }}" rel="stylesheet">
 
     <!--Color Switcher Mockup-->
-    <link href="css/color-switcher-design.css" rel="stylesheet">
+    <link href="{{ asset('css/color-switcher-design.css') }}" rel="stylesheet">
     <!--Color Themes-->
     <link id="theme-color-file" href="{{ asset('css/color-themes/default-theme.css') }}" rel="stylesheet">
 
-    <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
-    <link rel="icon" href="images/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ $site->image_icon }}" type="image/x-icon">
+    <link rel="icon" href="{{ $site->image_icon }}" type="image/x-icon">
 
     <!-- Responsive -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -61,8 +61,8 @@
                     <div class="auto-container clearfix">
                         <!--Info-->
                         <div class="logo-outer">
-                            <div class="logo"><a href="index.html"><img src="images/logo.png" alt=""
-                                        title=""></a></div>
+                            <div class="logo"><a href="{{ route('home') }}"><img src="{{ $site->image_icon }}" alt=""
+                                  width="100" height="200"      title=""></a></div>
                         </div>
 
                         <!--Nav Box-->
@@ -81,83 +81,74 @@
 
                                 <div class="collapse navbar-collapse clearfix" id="navbarSupportedContent">
                                     <ul class="navigation clearfix">
-                                        <li class="dropdown"><a href="#">Home</a>
-                                            <ul>
-                                                <li><a href="index.html">Home</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="dropdown"><a href="#">About us</a>
-                                            <ul>
-                                                <li><a href="about.html">About Us</a></li>
-                                            </ul>
-                                        </li>
+                                        <li><a href="{{ route('home') }}">Home</a></li>
+                                        <li class="dropdown"><a href="#">About us</a></li>
                                         <!-- <li class="dropdown has-mega-menu"><a href="#">Pages</a>
-          <div class="mega-menu">
-           <div class="mega-menu-bar row clearfix">
-            <div class="column col-md-3 col-xs-12">
-             <h3>About Us</h3>
-             <ul>
-              <li><a href="about.html">About Us</a></li>
-              <li><a href="team.html">Our Team</a></li>
-              <li><a href="faq.html">Faq</a></li>
-              <li><a href="services.html">Services</a></li>
-             </ul>
-            </div>
-            <div class="column col-md-3 col-xs-12">
-             <h3>Doctors</h3>
-             <ul>
-              <li><a href="doctors.html">Doctors</a></li>
-              <li><a href="doctors-detail.html">Doctors Detail</a></li>
-             </ul>
-            </div>
-            <div class="column col-md-3 col-xs-12">
-             <h3>Blog</h3>
-             <ul>
-              <li><a href="blog.html">Our Blog</a></li>
-              <li><a href="blog-classic.html">Blog Classic</a></li>
-              <li><a href="blog-detail.html">Blog Detail</a></li>
-             </ul>
-            </div>
-            <div class="column col-md-3 col-xs-12">
-             <h3>Shops</h3>
-             <ul>
-              <li><a href="shop.html">Shop</a></li>
-              <li><a href="shop-single.html">Shop Details</a></li>
-              <li><a href="shoping-cart.html">Cart Page</a></li>
-              <li><a href="checkout.html">Checkout Page</a></li>
-             </ul>
-            </div>
-           </div>
-          </div>
-         </li>
-                                    <li class="dropdown"><a href="#">Doctors</a>
-                                        <ul>
-                                            <li><a href="doctors.html">Doctors</a></li>
-                                            <li><a href="doctors-detail.html">Doctors Detail</a></li>
-                                        </ul>
-                                    </li>
-         <li class="dropdown"><a href="#">Department</a>
-                                        <ul>
-                                            <li><a href="department.html">Department</a></li>
-                                            <li><a href="department-detail.html">Department Detail</a></li>
-                                        </ul>
-                                    </li> -->
-                                        <li class="dropdown"><a href="#">Blog</a>
+                                    <div class="mega-menu">
+                                        <div class="mega-menu-bar row clearfix">
+                                            <div class="column col-md-3 col-xs-12">
+                                                <h3>About Us</h3>
+                                                <ul>
+                                                    <li><a href="about.html">About Us</a></li>
+                                                    <li><a href="team.html">Our Team</a></li>
+                                                    <li><a href="faq.html">Faq</a></li>
+                                                    <li><a href="services.html">Services</a></li>
+                                                </ul>
+                                            </div>
+                                            <div class="column col-md-3 col-xs-12">
+                                                <h3>Doctors</h3>
+                                                <ul>
+                                                    <li><a href="doctors.html">Doctors</a></li>
+                                                    <li><a href="doctors-detail.html">Doctors Detail</a></li>
+                                                </ul>
+                                            </div>
+                                            <div class="column col-md-3 col-xs-12">
+                                                <h3>Blog</h3>
+                                                <ul>
+                                                    <li><a href="blog.html">Our Blog</a></li>
+                                                    <li><a href="blog-classic.html">Blog Classic</a></li>
+                                                    <li><a href="blog-detail.html">Blog Detail</a></li>
+                                                </ul>
+                                            </div>
+                                            <div class="column col-md-3 col-xs-12">
+                                                <h3>Shops</h3>
+                                                <ul>
+                                                    <li><a href="shop.html">Shop</a></li>
+                                                    <li><a href="shop-single.html">Shop Details</a></li>
+                                                    <li><a href="shoping-cart.html">Cart Page</a></li>
+                                                    <li><a href="checkout.html">Checkout Page</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="dropdown"><a href="#">Doctors</a>
+                                    <ul>
+                                        <li><a href="doctors.html">Doctors</a></li>
+                                        <li><a href="doctors-detail.html">Doctors Detail</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown"><a href="#">Department</a>
+                                    <ul>
+                                        <li><a href="department.html">Department</a></li>
+                                        <li><a href="department-detail.html">Department Detail</a></li>
+                                    </ul>
+                                </li> -->
+                                        <li class="dropdown"><a href="{{ route('articales.classic') }}">Blog</a>
                                             <ul>
-                                                <li><a href="blog.html">Our Blog</a></li>
-                                                <li><a href="blog-classic.html">Blog Classic</a></li>
-                                                <li><a href="blog-detail.html">Blog Detail</a></li>
+                                                <li><a href="{{ route('articales.simpel') }}">Our Blog</a></li>
+                                                <li><a href="{{ route('articales.classic') }}">Blog Classic</a></li>
                                             </ul>
                                         </li>
                                         <!-- <li class="dropdown"><a href="#">Shop</a>
-                                        <ul>
-                                            <li><a href="shop.html">Shop</a></li>
-                                            <li><a href="shop-single.html">Shop Details</a></li>
-                                            <li><a href="shoping-cart.html">Cart Page</a></li>
-                                            <li><a href="checkout.html">Checkout Page</a></li>
-                                        </ul>
-                                    </li> -->
-                                        <li class="current"><a href="contact.html">Contact</a></li>
+                                    <ul>
+                                        <li><a href="shop.html">Shop</a></li>
+                                        <li><a href="shop-single.html">Shop Details</a></li>
+                                        <li><a href="shoping-cart.html">Cart Page</a></li>
+                                        <li><a href="checkout.html">Checkout Page</a></li>
+                                    </ul>
+                                </li> -->
+                                        <li class="current"><a href="{{ route('contact.index') }}">Contact</a></li>
                                     </ul>
                                 </div>
                             </nav>
@@ -169,7 +160,7 @@
                                 <div class="search-box-btn"><span class="icon flaticon-search"></span></div>
                                 <!-- Button Box -->
                                 <div class="btn-box">
-                                    <a href="contact.html" class="theme-btn btn-style-one"><span
+                                    <a href="{{ route('contact.index') }}" class="theme-btn btn-style-one"><span
                                             class="txt">Appointment</span></a>
                                 </div>
                             </div>
@@ -184,8 +175,8 @@
                 <div class="auto-container clearfix">
                     <!--Logo-->
                     <div class="logo pull-left">
-                        <a href="index.html" class="img-responsive"><img src="images/logo-small.png" alt=""
-                                title=""></a>
+                        <a href="{{ route('home') }}" class="img-responsive"><img src="{{ $site->image_icon }}" alt=""
+                          width="50" height="200"      title=""></a>
                     </div>
 
                     <!--Right Col-->
@@ -211,8 +202,8 @@
 
                 <!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header-->
                 <nav class="menu-box">
-                    <div class="nav-logo"><a href="index.html"><img src="images/nav-logo.png" alt=""
-                                title=""></a></div>
+                    <div class="nav-logo"><a href="{{ route('home') }}"><img src="{{ $site->image_icon }}" alt=""
+                          width="50" height="150"      title=""></a></div>
 
                     <ul class="navigation clearfix">
                         <!--Keep This Empty / Menu will come through Javascript-->
@@ -223,20 +214,8 @@
         </header>
         <!-- End Main Header -->
 
-        <!--Page Title-->
-        <section class="page-title" style="background-image:url(images/background/7.jpg);">
-            <div class="auto-container">
-                <h1>Contact For MediTech</h1>
-                <div class="text">What We Actually Do?</div>
-                <ul class="bread-crumb clearfix">
-                    <li><a href="index.html"><span class="fas fa-home"></span> Home </a></li>
-                    <li>Contact us</li>
-                </ul>
-            </div>
-        </section>
-        <!--End Page Title-->
+        {{ $slot }}
 
-        @yield('content')
         <!--Main Footer-->
         <footer class="main-footer style-two">
             <div class="auto-container">
@@ -252,7 +231,7 @@
                                 <div class="footer-column col-lg-7 col-md-6 col-sm-12">
                                     <div class="footer-widget logo-widget">
                                         <div class="logo">
-                                            <a href="index.html"><img src="images/logo-3.png" alt="" /></a>
+                                            <a href="{{ route('home') }}"><img src="{{ $site->image_icon }}" alt="" width="100" height="100"/></a>
                                         </div>
                                         <div class="text">Meditech is a library of health and medical templates with
                                             predefined web elements which helps you to build your medical templates best
@@ -276,12 +255,10 @@
                                             <div class="separator"></div>
                                         </div>
                                         <ul class="footer-list">
-                                            <li><a href="#">Surgery & Radiology</a></li>
-                                            <li><a href="#">Family Medicine</a></li>
-                                            <li><a href="#">Women’s Health</a></li>
-                                            <li><a href="#">Optician</a></li>
-                                            <li><a href="#">Pediatrics</a></li>
-                                            <li><a href="#">Dermatology</a></li>
+                                            @foreach ($departments as $department)
+                                                <li><a href="#">{{ $department->name }}</a></li>
+                                            @endforeach
+
                                         </ul>
                                     </div>
                                 </div>
@@ -340,7 +317,8 @@
                                             <li><span class="icon flaticon-placeholder"></span>2130 Fulton Street San
                                                 Diego <br> CA 94117-1080 USA</li>
                                             <li><span class="icon flaticon-call"></span>Mon to Fri : 08:30 - 18:00 <br>
-                                                <a href="tel:+898-68679-575-09">+898 68679 575 09</a></li>
+                                                <a href="tel:+898-68679-575-09">+898 68679 575 09</a>
+                                            </li>
                                             <li><span class="icon flaticon-message"></span>Do you have a Question? <a
                                                     href="mailto:info@gmail.com">info@gmail.com</a></li>
                                         </ul>
@@ -437,20 +415,20 @@
     </div>
 
     <!--Scroll to top-->
-    <script src="js/jquery.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/jquery-ui.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery.fancybox.js"></script>
-    <script src="js/parallax.min.js"></script>
-    <script src="js/validate.js"></script>
-    <script src="js/jquery.paroller.min.js"></script>
-    <script src="js/owl.js"></script>
-    <script src="js/wow.js"></script>
-    <script src="js/swiper.min.js"></script>
-    <script src="js/appear.js"></script>
-    <script src="js/script.js"></script>
-    <script src="js/color-settings.js"></script>
+    <script src="{{ asset('js/jquery.js') }}"></script>
+    <script src="{{ asset('js/popper.min.js') }}"></script>
+    <script src="{{ asset('js/jquery-ui.js') }}"></script>
+    <script src="{{ asset('js/validate.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/jquery.fancybox.js') }}"></script>
+    <script src="{{ asset('js/parallax.min.js') }}"></script>
+    <script src="{{ asset('js/jquery.paroller.min.js') }}"></script>
+    <script src="{{ asset('js/owl.js') }}"></script>
+    <script src="{{ asset('js/wow.js') }}"></script>
+    <script src="{{ asset('js/swiper.min.js') }}"></script>
+    <script src="{{ asset('js/appear.js') }}"></script>
+    <script src="{{ asset('js/script.js') }}"></script>
+    <script src="{{ asset('js/color-settings.js') }}"></script>
 
     <!--Google Map APi Key-->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD39_Mb1wKUcuRD-0KPmQT6SQHhEMVX1O0"></script>

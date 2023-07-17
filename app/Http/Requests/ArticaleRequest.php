@@ -23,7 +23,6 @@ class ArticaleRequest extends FormRequest
     {
         return [
             'department_id'=> 'required',
-            'user_id'=>'required',
             'image' => 'required|image|max:700',
             'title'=>'required|string|min:5',
             'description'=>'required|min:10',

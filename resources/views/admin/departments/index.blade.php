@@ -28,7 +28,7 @@
                 <td>{{ $department->id }}</td>
                 <td>{{ $department->name }}</td>
                 <td>
-                  <a href="#">
+                  <a href="{{ $department->image_link }}">
                       <img src="{{ $department->image_link }}" alt="#" srcset="" high =60 width=60>
                   </a>
                </td>
