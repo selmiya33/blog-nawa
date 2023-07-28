@@ -23,4 +23,9 @@ class Contact extends Model
     {
         return $this->belongsTo(User::class)->withDefault();
     }
+
+    public function admin()
+    {
+        return $this->belongsTo(Admin::class)->withDefault();
+    }
 }

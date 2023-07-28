@@ -12,7 +12,7 @@
             </ul>
             <ul class="post-meta">
                 <li>{{ $articale->created_at->format('F j, Y \a\t g:ia') }}</li>
-                <li>Post By: {{ $articale->user->name }}</li>
+                <li>Post By: {{ $articale->authore->name }}</li>
             </ul>
             <h3>{{ $articale->title }}</h3>
             <div class="text">

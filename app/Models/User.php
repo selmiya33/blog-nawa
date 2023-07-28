@@ -52,4 +52,17 @@ class User extends Authenticatable
     public function contacts(){
         return $this->hasMany(Contact::class);
     }
+
+    public function department(){
+        return $this->belongsTo(Department::class);
+    }
+
+    public function author()
+    {
+        return $this->hasOne(Author::class);
+    }
+
+    public function comments(){
+        return $this->hasMany(Comment::class);
+    }
 }

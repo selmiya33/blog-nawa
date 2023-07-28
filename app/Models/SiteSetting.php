@@ -18,6 +18,6 @@ class SiteSetting extends Model
             if ($this->icon) {
                 return Storage::disk('public')->url($this->icon);
             }
-            return "https://images.pexels.com/photos/4288671/pexels-photo-4288671.jpeg";
+            return "https://th.bing.com/th/id/OIP.MH5pBsJR2Ru2ICs91HNtegHaHa?pid=ImgDet&rs=1";
         }
 }

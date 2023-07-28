@@ -12,7 +12,7 @@
                 <div class="content-side col-lg-8 col-md-12 col-sm-12">
                     <div class="news-detail">
 
-                        <x-articale-singel :articale="$articale"/>
+                        <x-articale-singel :articale="$articale" />
 
                         <!-- Other Options -->
                         <div class="post-share-options clearfix">
@@ -129,90 +129,64 @@
                     </div>
 
                     <!--Comments Area-->
-                    <div class="comments-area">
-
-                        <div class="group-title">
-                            <h2>Comments 02</h2>
-                        </div>
-
-                        <!--Comment Box-->
-                        <div class="comment-box">
-                            <div class="comment">
-                                <div class="author-thumb"><img src="images/resource/author-7.jpg" alt="">
-                                </div>
-                                <div class="comment-inner">
-                                    <div class="comment-info clearfix"><strong>Paul Jones </strong>
-                                        <div class="comment-time">August 29, 2018</div>
-                                    </div>
-                                    <div class="text">Cosmic ocean science Tunguska event the only home we’ve ever
-                                        known Orion’s sword, concept of the one billions upon billions paroxysm of
-                                        global death.</div>
-                                    <a class="comment-reply" href="#"><span
-                                            class="fas fa-reply-all"></span>Reply</a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!--Comment Box-->
-                        <div class="comment-box reply-comment">
-                            <div class="comment">
-                                <div class="author-thumb"><img src="images/resource/author-8.jpg" alt="">
-                                </div>
-                                <div class="comment-inner">
-                                    <div class="comment-info clearfix"><strong>Catherine Brown</strong>
-                                        <div class="comment-time">August 29, 2017</div>
-                                    </div>
-                                    <div class="text">Cosmic ocean science Tunguska event the only home we’ve ever
-                                        known Orion’s of the one billions upon billions paroxysm of global death.</div>
-                                    <a class="comment-reply" href="#"><span
-                                            class="fas fa-reply-all"></span>Reply</a>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-
+                    <x-comments-section :comments="$comments" />
 
                     <!-- Comment Form -->
                     <div class="comment-form">
 
                         <div class="group-title">
-                            <h2>Leave a Reply</h2>
+                            <h2>Leave a Comment</h2>
                         </div>
 
                         <!-- Comment Form -->
                         <div class="comment-form">
                             <!-- Comment Form -->
-                            <form method="post" action="blog.html">
+                            <form method="post" action="{{ route("comment.store") }}">
+                                @csrf
+                                <input type="hidden" name="articale_id" value="{{ $articale->id }}" hidden>
                                 <div class="row clearfix">
-                                    <div class="col-lg-12 col-md-12 col-sm-12 form-group">
-                                        <input type="text" name="username" placeholder="Full Name" required>
+                                    <div class="col-lg-9 col-md-9 col-sm-9 form-group">
+                                        <input type="text" name="comment" placeholder="Your Comment" required>
                                     </div>
 
-                                    <div class="col-lg-6 col-md-6 col-sm-12 form-group">
-                                        <input type="email" name="email" placeholder="Email" required>
+                                    <div class="col-lg-3 col-md-3 col-sm-3 form-group">
+                                        <button class="theme-btn comment-btn " type="submit" name="submit-form" style="display: inline; /* Add other inline styles here */">Comment</button>
                                     </div>
-
-                                    <div class="col-lg-6 col-md-6 col-sm-12 form-group">
-                                        <input type="text" name="subject" placeholder="Subject" required>
-                                    </div>
-
-                                    <div class="col-lg-12 col-md-12 col-sm-12 form-group">
-                                        <textarea name="message" placeholder="Message"></textarea>
-                                    </div>
-
-                                    <div class="col-lg-12 col-md-12 col-sm-12 form-group">
-                                        <button class="theme-btn comment-btn" type="submit" name="submit-form">Post
-                                            Comments</button>
-                                    </div>
-
                                 </div>
                             </form>
-
                         </div>
+
                         <!--End Faq Form -->
 
                     </div>
+                    {{-- <!-- Replay Form -->
+                    <div class="comment-form">
+
+                        <div class="group-title">
+                            <h2>Leave a Replay</h2>
+                        </div>
+
+                        <!-- Comment Form -->
+                        <div class="comment-form">
+                            <!-- Comment Form -->
+                            <form method="post" action="#">
+                                @csrf
+                                <input type="hidden" name="articale_id" value="{{ $articale->id }}" hidden>
+                                <div class="row clearfix">
+                                    <div class="col-lg-9 col-md-9 col-sm-9 form-group">
+                                        <input type="text" name="comment" placeholder="Your Comment" required>
+                                    </div>
+
+                                    <div class="col-lg-3 col-md-3 col-sm-3 form-group">
+                                        <button class="theme-btn comment-btn " type="submit" name="submit-form" style="display: inline; /* Add other inline styles here */">Reply</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                        <!--End Faq Form -->
+
+                    </div> --}}
 
 
 
@@ -235,56 +209,10 @@
                         </div>
 
                         <!--Category Blog-->
-                        <div class="sidebar-widget categories-blog">
-                            <div class="sidebar-title">
-                                <h2>Best Categories</h2>
-                                <div class="separator"></div>
-                            </div>
-                            <ul>
-                                <li><a href="#">Body Surgery <span>05</span></a></li>
-                                <li><a href="#">Dental Care <span>12</span></a></li>
-                                <li><a href="#">Eye Care <span>35</span></a></li>
-                                <li><a href="#">Blood Cancer <span>25</span></a></li>
-                                <li><a href="#">Neurology Sargery <span>65</span></a></li>
-                                <li><a href="#">Health Care <span>12</span></a></li>
-                            </ul>
-                        </div>
+                        <x-department-blog :departments="$departments"/>
 
                         <!-- Popular Posts -->
-                        <div class="sidebar-widget popular-posts">
-                            <div class="sidebar-title">
-                                <h2>Recent Posts</h2>
-                                <div class="separator"></div>
-                            </div>
-
-                            <div class="widget-content">
-
-                                <article class="post">
-                                    <div class="post-thumb"><a href="blog-detail.html"><img
-                                                src="images/resource/post-thumb-1.jpg" alt=""></a></div>
-                                    <h3><a href="blog-detail.html">Integrative Medicine And Cancer Treatment</a></h3>
-                                    <span class="date">Dec. 20, 2017</span>
-                                </article>
-
-                                <article class="post">
-                                    <div class="post-thumb"><a href="blog-detail.html"><img
-                                                src="images/resource/post-thumb-4.jpg" alt=""></a></div>
-                                    <h3><a href="blog-detail.html">Achieving Better Health Care One Patient Time</a>
-                                    </h3>
-                                    <span class="date">Dec. 20, 2017</span>
-                                </article>
-
-                                <article class="post">
-                                    <div class="post-thumb"><a href="blog-detail.html"><img
-                                                src="images/resource/post-thumb-5.jpg" alt=""></a></div>
-                                    <h3><a href="blog-detail.html">Doctor Appointment for the Client to check up.</a>
-                                    </h3>
-                                    <span class="date">Dec. 20, 2017</span>
-                                </article>
-
-                            </div>
-
-                        </div>
+                        <x-popular-post :articale="$articale"/>
 
                         <!-- Archive Category -->
                         <div class="sidebar-widget categories-blog">
@@ -300,7 +228,7 @@
                         </div>
 
                         <!-- Gallery Widget -->
-                            <x-articale-gallery :gallery="$gallery"/>
+                        <x-articale-gallery :gallery="$gallery" />
                         <!-- Tags -->
                         <div class="sidebar-widget tags">
                             <div class="sidebar-title">

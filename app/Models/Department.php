@@ -21,6 +21,14 @@ class Department extends Model
     public function articales(){
         return $this->hasMany(Articale::class);
     }
+
+    public function authores()
+    {
+        return $this->hasMany(Authore::class);
+    }
+    public function department(){
+        return $this->belongsTo(Department::class);
+    }
     //Accessor getImageUrlAttribute
     public function getImageLinkAttribute()
     {

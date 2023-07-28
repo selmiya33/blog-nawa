@@ -10,10 +10,10 @@ use PHPUnit\Framework\MockObject\Stub\ReturnReference;
 
 class SiteSettingController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware(['auth.type:admin']);
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware(['auth.type:admin']);
+    // }
     /**
      * Display a listing of the resource.
      */

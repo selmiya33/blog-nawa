@@ -10,10 +10,10 @@ use App\Http\Requests\DepartmentRequest;
 
 class DepartmentController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware(['auth.type:admin']);
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware(['auth.type:admin']);
+    // }
 
     /**
      * Display a listing of the resource.

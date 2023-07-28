@@ -5,58 +5,7 @@
         <div class="banner-carousel">
             <!-- Swiper -->
             <div class="swiper-wrapper">
-
-                <div class="swiper-slide slide" style="background-image:url(images/main-slider/1.jpg)">
-                    <div class="auto-container">
-                        <div class="content clearfix">
-                            <div class="title">Welcome our Medical Care Center</div>
-                            <h2>Take Care of Your Health</h2>
-                            <div class="text">We're always available for our Patients with emergent problems. You
-                                can easily reach us 24/7 via the phone number below:</div>
-                            <div class="btn-box clearfix">
-                                <a href="contact.html" class="theme-btn btn-style-two"><span class="txt">Our
-                                        Services</span></a>
-                                <a href="contact.html" class="theme-btn phone-btn"><span
-                                        class="icon flaticon-call"></span>555–123–2323</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="swiper-slide slide" style="background-image:url(images/main-slider/1.jpg)">
-                    <div class="auto-container">
-                        <div class="content">
-                            <div class="title">Welcome our Medical Care Center</div>
-                            <h2>Take Care of Your Health</h2>
-                            <div class="text">We're always available for our Patients with emergent problems. You
-                                can easily reach us 24/7 via the phone number below:</div>
-                            <div class="btn-box">
-                                <a href="contact.html" class="theme-btn btn-style-two"><span class="txt">Our
-                                        Services</span></a>
-                                <a href="contact.html" class="theme-btn phone-btn"><span
-                                        class="icon flaticon-call"></span>555–123–2323</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="swiper-slide slide" style="background-image:url(images/main-slider/1.jpg)">
-                    <div class="auto-container">
-                        <div class="content">
-                            <div class="title">Welcome our Medical Care Center</div>
-                            <h2>Take Care of Your Health</h2>
-                            <div class="text">We're always available for our Patients with emergent problems. You
-                                can easily reach us 24/7 via the phone number below:</div>
-                            <div class="btn-box">
-                                <a href="contact.html" class="theme-btn btn-style-two"><span class="txt">Our
-                                        Services</span></a>
-                                <a href="contact.html" class="theme-btn phone-btn"><span
-                                        class="icon flaticon-call"></span>555–123–2323</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
+                <x-home.swiper-slide :slides="$slides" />
             </div>
             <!-- Add Pagination -->
             <div class="swiper-pagination"></div>
@@ -79,7 +28,7 @@
 
             <div class="services-carousel owl-carousel owl-theme">
                 <!-- Department Block -->
-                <x-home.department-block  :departments="$departments" />
+                <x-home.department-block :departments="$departments" />
             </div>
 
         </div>
@@ -271,7 +220,7 @@
                         <div class="inner wow fadeInLeft" data-wow-delay="300ms" data-wow-duration="1500ms">
                             <div class="content">
                                 <div class="count-outer count-box alternate">
-                                    +<span class="count-text" data-speed="3000" data-stop="350">0</span>
+                                    +<span class="count-text" data-speed="3000" data-stop="{{ $authores->count()}}">0</span>
                                 </div>
                                 <h4 class="counter-title">Doctor’s Team</h4>
                             </div>
@@ -283,9 +232,9 @@
                         <div class="inner wow fadeInLeft" data-wow-delay="600ms" data-wow-duration="1500ms">
                             <div class="content">
                                 <div class="count-outer count-box">
-                                    <span class="count-text" data-speed="3000" data-stop="2150">0</span>
+                                    <span class="count-text" data-speed="3000" data-stop="{{ $articales->count()}}">0</span>
                                 </div>
-                                <h4 class="counter-title">Success Mission</h4>
+                                <h4 class="counter-title">Articale</h4>
                             </div>
                         </div>
                     </div>
@@ -322,96 +271,7 @@
             <div class="row clearfix">
 
                 <!-- Team Block -->
-                <div class="team-block col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                    <div class="inner-box wow fadeInUp" data-wow-delay="0ms" data-wow-duration="1500ms">
-                        <div class="image">
-                            <img src="images/resource/team-1.jpg" alt="" />
-                            <div class="overlay-box">
-                                <ul class="social-icons">
-                                    <li><a href="#"><span class="fab fa-facebook-f"></span></a></li>
-                                    <li><a href="#"><span class="fab fa-google"></span></a></li>
-                                    <li><a href="#"><span class="fab fa-twitter"></span></a></li>
-                                    <li><a href="#"><span class="fab fa-skype"></span></a></li>
-                                    <li><a href="#"><span class="fab fa-linkedin-in"></span></a></li>
-                                </ul>
-                                <a href="#" class="appointment">Make Appointment</a>
-                            </div>
-                        </div>
-                        <div class="lower-content">
-                            <h3><a href="#">Dr. Andria Jonea</a></h3>
-                            <div class="designation">Cancer Specialist</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Team Block -->
-                <div class="team-block col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                    <div class="inner-box wow fadeInUp" data-wow-delay="250ms" data-wow-duration="1500ms">
-                        <div class="image">
-                            <img src="images/resource/team-2.jpg" alt="" />
-                            <div class="overlay-box">
-                                <ul class="social-icons">
-                                    <li><a href="#"><span class="fab fa-facebook-f"></span></a></li>
-                                    <li><a href="#"><span class="fab fa-google"></span></a></li>
-                                    <li><a href="#"><span class="fab fa-twitter"></span></a></li>
-                                    <li><a href="#"><span class="fab fa-skype"></span></a></li>
-                                    <li><a href="#"><span class="fab fa-linkedin-in"></span></a></li>
-                                </ul>
-                                <a href="#" class="appointment">Make Appointment</a>
-                            </div>
-                        </div>
-                        <div class="lower-content">
-                            <h3><a href="#">Dr. Robet Samith</a></h3>
-                            <div class="designation">Heart Surgen</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Team Block -->
-                <div class="team-block col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                    <div class="inner-box wow fadeInUp" data-wow-delay="500ms" data-wow-duration="1500ms">
-                        <div class="image">
-                            <img src="images/resource/team-3.jpg" alt="" />
-                            <div class="overlay-box">
-                                <ul class="social-icons">
-                                    <li><a href="#"><span class="fab fa-facebook-f"></span></a></li>
-                                    <li><a href="#"><span class="fab fa-google"></span></a></li>
-                                    <li><a href="#"><span class="fab fa-twitter"></span></a></li>
-                                    <li><a href="#"><span class="fab fa-skype"></span></a></li>
-                                    <li><a href="#"><span class="fab fa-linkedin-in"></span></a></li>
-                                </ul>
-                                <a href="#" class="appointment">Make Appointment</a>
-                            </div>
-                        </div>
-                        <div class="lower-content">
-                            <h3><a href="#">Dr. Sharon Laura</a></h3>
-                            <div class="designation">Family Physician</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Team Block -->
-                <div class="team-block col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                    <div class="inner-box wow fadeInUp" data-wow-delay="750ms" data-wow-duration="1500ms">
-                        <div class="image">
-                            <img src="images/resource/team-4.jpg" alt="" />
-                            <div class="overlay-box">
-                                <ul class="social-icons">
-                                    <li><a href="#"><span class="fab fa-facebook-f"></span></a></li>
-                                    <li><a href="#"><span class="fab fa-google"></span></a></li>
-                                    <li><a href="#"><span class="fab fa-twitter"></span></a></li>
-                                    <li><a href="#"><span class="fab fa-skype"></span></a></li>
-                                    <li><a href="#"><span class="fab fa-linkedin-in"></span></a></li>
-                                </ul>
-                                <a href="#" class="appointment">Make Appointment</a>
-                            </div>
-                        </div>
-                        <div class="lower-content">
-                            <h3><a href="#">Dr. Alex Furgosen</a></h3>
-                            <div class="designation">Ortho Specialist</div>
-                        </div>
-                    </div>
-                </div>
+                <x-home.team-block :authores="$authores"  :accounts="$accounts"/>
 
             </div>
 
@@ -610,7 +470,7 @@
             </div>
             <div class="row clearfix">
                 <!-- News Block -->
-                <x-home.news-block  :articales="$articales"/>
+                <x-home.news-block :articales="$articales" />
             </div>
         </div>
     </section>

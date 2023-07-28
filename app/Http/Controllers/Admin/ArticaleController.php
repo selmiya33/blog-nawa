@@ -17,7 +17,7 @@ class ArticaleController extends Controller
 
     public function __construct(Request $request)
     {
-        $this->middleware(['auth.type:admin,author']);
+        // $this->middleware(['auth.type:admin,author']);
         if ($request->method() == "GET") {
 
             $departments = Department::all();
@@ -32,9 +32,7 @@ class ArticaleController extends Controller
     public function index()
     {
         $allArticales = Articale::latest('created_at')->paginate(); ///admin show all articales
-        $articales = Articale::where('user_id',Auth::id())->paginate();//The author sees only his articles
         return view('admin.articales.index', [
-            "articales" => $articales ,
             "allArticales"=>$allArticales
         ]);
     }
@@ -69,7 +67,7 @@ class ArticaleController extends Controller
             //array of uploadfile
             foreach ($request->file('gallery') as $file) {
                 ArticaleImage::create([
-                    'product_id' => $articale->id,
+                    'articale_id' => $articale->id,
                     'image' => $file->store("uploads/articales/$articale->id", ['disk' => 'public'])
                 ]);
             }

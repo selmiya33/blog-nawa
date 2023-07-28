@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Admin;
 use App\Models\Contact;
 use App\Models\Department;
 use Illuminate\Http\Request;
@@ -11,13 +12,18 @@ use App\Notifications\ContactMessageNotification;
 
 class ContactController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('throttle:2,10')->except('index');//manytimes ,minte
+    }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
         $departments = Department::all();
-        return view('blog.contact',['departments'=>$departments]);
+        return view('blog.contact', ['departments' => $departments]);
     }
 
     /**
@@ -26,11 +32,11 @@ class ContactController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'name'=>'required|string|min:3|max:50',
-            'email' =>'required|email' ,
-            'department_id'=>'required',
-            'message'=> 'required|string',
-            'phone'=> 'nullable|numeric',
+            'name' => 'required|string|min:3|max:50',
+            'email' => 'required|email',
+            'department_id' => 'required',
+            'message' => 'required|string',
+            'phone' => 'nullable|numeric',
         ]);
 
         $data['user_id'] = Auth::id() ?? null;
@@ -38,8 +44,13 @@ class ContactController extends Controller
         $Contact = Contact::create($data);
 
         //send notification to admin
-        $admin = User::where('type','=','admin')->first();
+        $admin = Admin::first();
+        // $admin = Admin::firstOrFail();
         $admin->notify(new ContactMessageNotification($Contact));
+
+        // foreach ($admins as $admin) {
+        //     $admin->notify(new ContactMessageNotification($Contact));
+        // }
 
         return redirect()->route('contact.index')
             ->with('success', "Thank you {{$Contact->name}} for Contact us ");

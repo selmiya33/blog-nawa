@@ -2,6 +2,7 @@
 
 namespace App\View\Components;
 
+use App\Models\Articale;
 use App\Models\Department;
 use App\Models\SiteSetting;
 use Closure;
@@ -14,6 +15,7 @@ class BlogLayout extends Component
     public $title;
     public $departments;
     public $site;
+    public $last_articales;
     /**
      * Create a new component instance.
      */
@@ -23,6 +25,7 @@ class BlogLayout extends Component
         $this->showbreadcrumb = $showbreadcrumb;
         $this->departments = Department::limit(6)->inRandomOrder()->get();
         $this->site = SiteSetting::latest()->first();
+        $this->last_articales = Articale::latest('created_at')->take(2)->get();
     }
 
     /**

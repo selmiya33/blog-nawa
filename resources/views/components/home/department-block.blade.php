@@ -3,7 +3,7 @@
 <div class="department-block">
     <div class="inner-box">
         <div class="upper-box" >
-            {{-- <div class="icon flaticon-kidneys"></div> --}}
+            <div class="icon flaticon-kidneys"></div>
             {{-- <div class="image-small"> <img src="{{ $department->image_link }}" alt="" srcset=""></div> --}}
             <h3><a href="#">{{ $department->name }}</a></h3>
         </div>

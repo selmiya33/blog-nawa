@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Articale extends Model
@@ -12,7 +13,7 @@ class Articale extends Model
 
     protected $fillable = [
         'department_id',
-        'user_id',
+        'authore_id',
         'image',
         'title',
         'description',
@@ -25,8 +26,18 @@ class Articale extends Model
         return $this->belongsTo(Department::class)->withDefault();
     }
 
-    public function user(){
-        return $this->belongsTo(User::class)->withDefault();
+    public function authore(){
+        return $this->belongsTo(Authore::class)->withDefault();
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
+    public function replies()
+    {
+        return $this->hasMany(Reply::class);
     }
 
     //Accessor getImageUrlAttribute
@@ -37,4 +48,12 @@ class Articale extends Model
         }
         return "https://www.pexels.com/photo/concentrated-ethnic-man-reading-newspaper-at-home-4288671/";
     }
+
+    //locale scope
+
+    public function scopeStatus(Builder $query, $status): void
+    {
+        $query->where('status','=', $status);
+    }
+
 }

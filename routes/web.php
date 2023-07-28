@@ -1,7 +1,9 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Authore\AccountController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Authore\ArticaleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->middleware(['auth:web', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -26,7 +28,15 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
-require __DIR__.'/admin.php';
-require __DIR__.'/blog.php';
 
+Route::middleware(['auth:authore'])->prefix('/authore')->group(function () {
+    Route::resource('/MyArticale', ArticaleController::class);
+    Route::resource('/MyAccounts', AccountController::class);
+
+});
+
+
+
+// require __DIR__ . '/auth.php';
+require __DIR__ . '/admin.php';
+require __DIR__ . '/blog.php';

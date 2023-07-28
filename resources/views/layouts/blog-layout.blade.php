@@ -36,15 +36,15 @@
                 <div class="auto-container clearfix">
                     <div class="top-left clearfix">
                         <ul class="list">
-                            <li><span class="icon fas fa-envelope"></span> 2130 Fulton Street San Diego CA 94117-1080
-                                USA</li>
-                            <li><span class="icon fas fa-phone"></span> <a href="tel:+555–123–2323"> 555–123–2323</a>
+                            <li><span class="icon fas fa-envelope"></span>This Website developed By Eng: Moath Abu
+                                Selmiya</li>
+                            <li><span class="icon fas fa-phone"></span> <a href="tel:+972593682248">+972593682248</a>
                             </li>
                         </ul>
                     </div>
                     <div class="top-right clearfix">
                         <ul class="social-icons">
-                            <li><a href="#"><span class="fab fa-facebook-f"></span></a></li>
+                            <li><a href="Selmiya33@gmail.com"><span class="fab fa-facebook-f"></span></a></li>
                             <li><a href="#"><span class="fab fa-google"></span></a></li>
                             <li><a href="#"><span class="fab fa-twitter"></span></a></li>
                             <li><a href="#"><span class="fab fa-skype"></span></a></li>
@@ -61,8 +61,8 @@
                     <div class="auto-container clearfix">
                         <!--Info-->
                         <div class="logo-outer">
-                            <div class="logo"><a href="{{ route('home') }}"><img src="{{ $site->image_icon }}" alt=""
-                                  width="100" height="200"      title=""></a></div>
+                            <div class="logo"><a href="{{ route('home') }}"><img src="{{ $site->image_icon }}"
+                                        alt="" width="100" height="200" title=""></a></div>
                         </div>
 
                         <!--Nav Box-->
@@ -175,8 +175,8 @@
                 <div class="auto-container clearfix">
                     <!--Logo-->
                     <div class="logo pull-left">
-                        <a href="{{ route('home') }}" class="img-responsive"><img src="{{ $site->image_icon }}" alt=""
-                          width="50" height="200"      title=""></a>
+                        <a href="{{ route('home') }}" class="img-responsive"><img src="{{ $site->image_icon }}"
+                                alt="" width="50" height="200" title=""></a>
                     </div>
 
                     <!--Right Col-->
@@ -202,8 +202,8 @@
 
                 <!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header-->
                 <nav class="menu-box">
-                    <div class="nav-logo"><a href="{{ route('home') }}"><img src="{{ $site->image_icon }}" alt=""
-                          width="50" height="150"      title=""></a></div>
+                    <div class="nav-logo"><a href="{{ route('home') }}"><img src="{{ $site->image_icon }}"
+                                alt="" width="50" height="150" title=""></a></div>
 
                     <ul class="navigation clearfix">
                         <!--Keep This Empty / Menu will come through Javascript-->
@@ -231,7 +231,8 @@
                                 <div class="footer-column col-lg-7 col-md-6 col-sm-12">
                                     <div class="footer-widget logo-widget">
                                         <div class="logo">
-                                            <a href="{{ route('home') }}"><img src="{{ $site->image_icon }}" alt="" width="100" height="100"/></a>
+                                            <a href="{{ route('home') }}"><img src="{{ $site->image_icon }}"
+                                                    alt="" width="100" height="100" /></a>
                                         </div>
                                         <div class="text">Meditech is a library of health and medical templates with
                                             predefined web elements which helps you to build your medical templates best
@@ -279,68 +280,60 @@
                                         </div>
 
                                         <!--News Widget Block-->
-                                        <div class="news-widget-block">
-                                            <div class="widget-inner">
-                                                <div class="image">
-                                                    <img src="images/resource/news-image-1.jpg" alt="" />
-                                                </div>
-                                                <h3><a href="blog-detail.html">Integrative Medicine And Cancer
-                                                        Treatment</a></h3>
-                                                <div class="post-date">July 11, 2017</div>
+                                        @foreach ($last_articales as $item)
+                                            <div class="news-widget-block">
+                                                <a href="{{ route('articales.single', $item->id) }}">
+                                                    <div class="widget-inner">
+                                                        <div class="image">
+                                                            <img src="{{ $item->image_link }}" alt="" />
+                                                        </div>
+                                                        <h3>{{ $item->title }}</h3>
+                                                </a>
+                                                <div class="post-date">{{ $item->created_at->format('d F Y') }}</div>
                                             </div>
-                                        </div>
-
-                                        <!--News Widget Block-->
-                                        <div class="news-widget-block">
-                                            <div class="widget-inner">
-                                                <div class="image">
-                                                    <img src="images/resource/news-image-2.jpg" alt="" />
-                                                </div>
-                                                <h3><a href="blog-detail.html">Achieving Better Health Care One Patient
-                                                        Time</a></h3>
-                                                <div class="post-date">July 11, 2018</div>
-                                            </div>
-                                        </div>
 
                                     </div>
+                                    @endforeach
+
                                 </div>
-
-                                <!--Footer Column-->
-                                <div class="footer-column col-lg-6 col-md-6 col-sm-12">
-                                    <div class="footer-widget contact-widget">
-                                        <div class="footer-title  clearfix">
-                                            <h2>Contact Us</h2>
-                                            <div class="separator"></div>
-                                        </div>
-
-                                        <ul class="contact-list">
-                                            <li><span class="icon flaticon-placeholder"></span>2130 Fulton Street San
-                                                Diego <br> CA 94117-1080 USA</li>
-                                            <li><span class="icon flaticon-call"></span>Mon to Fri : 08:30 - 18:00 <br>
-                                                <a href="tel:+898-68679-575-09">+898 68679 575 09</a>
-                                            </li>
-                                            <li><span class="icon flaticon-message"></span>Do you have a Question? <a
-                                                    href="mailto:info@gmail.com">info@gmail.com</a></li>
-                                        </ul>
-
-                                    </div>
-                                </div>
-
                             </div>
+
+                            <!--Footer Column-->
+                            <div class="footer-column col-lg-6 col-md-6 col-sm-12">
+                                <div class="footer-widget contact-widget">
+                                    <div class="footer-title  clearfix">
+                                        <h2>Contact Us</h2>
+                                        <div class="separator"></div>
+                                    </div>
+
+                                    <ul class="contact-list">
+                                        <li><span class="icon flaticon-placeholder"></span>2130 Fulton Street San
+                                            Diego <br> CA 94117-1080 USA</li>
+                                        <li><span class="icon flaticon-call"></span>Mon to Fri : 08:30 - 18:00 <br>
+                                            <a href="tel:+898-68679-575-09">+898 68679 575 09</a>
+                                        </li>
+                                        <li><span class="icon flaticon-message"></span>Do you have a Question? <a
+                                                href="mailto:info@gmail.com">info@gmail.com</a></li>
+                                    </ul>
+
+                                </div>
+                            </div>
+
                         </div>
-
                     </div>
+
                 </div>
             </div>
+    </div>
 
-            <!-- Footer Bottom -->
-            <div class="footer-bottom">
-                <div class="auto-container">
-                    <div class="copyright">MediTech Helth Care &copy; All Rights Reserved By Expertthemes</div>
-                </div>
-            </div>
+    <!-- Footer Bottom -->
+    <div class="footer-bottom">
+        <div class="auto-container">
+            <div class="copyright">MediTech Helth Care &copy; All Rights Reserved By Expertthemes</div>
+        </div>
+    </div>
 
-        </footer>
+    </footer>
 
     </div>
     <!--End pagewrapper-->
